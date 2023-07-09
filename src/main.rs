@@ -1,3 +1,4 @@
+use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 use std::thread::spawn;
 
 use bevy::prelude::*;
@@ -55,5 +56,6 @@ fn main() {
         .add_startup_system(spawn_camera)
         .add_startup_system(spawn_light)
         .add_plugins(DefaultPlugins)
+        .add_plugin(FrameTimeDiagnosticsPlugin::default())
         .run();
 }
