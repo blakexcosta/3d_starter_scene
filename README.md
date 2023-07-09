@@ -1,4 +1,4 @@
-# 3d_starter_scene
+# 3D Starter Scene
 
 This is a slightly modified starter scene from the bevy 3d engine with performance optizimations enabled, and the camera + lighting extracted into separate systems.
 
