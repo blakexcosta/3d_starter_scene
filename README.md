@@ -1,6 +1,6 @@
 # 3D Starter Scene
 
-This is a slightly modified starter scene from the bevy 3d engine with performance optizimations enabled, and the camera + lighting extracted into separate systems.
+This is a slightly modified starter scene from the bevy 3d engine with some performance optizimations enabled, as well as the the camera + lighting extracted into separate systems.
 
 Running instructions:
 1. Make sure `cargo install cargo-watch` is installed if you haven't already.
