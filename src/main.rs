@@ -10,6 +10,9 @@ use std::thread::spawn;
 pub const HEIGHT: f32 = 1080.0;
 pub const WIDTH: f32 = 1920.0;
 
+// COMPONENTS
+// ----------------------------------------------
+// These are examples of components
 // new tower component with a Timer
 #[derive(Reflect, Component, Default)]
 #[reflect(Component)]
@@ -35,7 +38,9 @@ pub struct Target {
 pub struct Health {
     value: i32,
 }
+// ----------------------------------------------
 
+// CAN REMOVE
 // fn move_targets(
 //     mut commands: Commands,
 //     mut targets: Query<(Entity, &mut Target)>, // Entity is only one don't need & or &mut
@@ -52,6 +57,7 @@ pub struct Health {
 //         }
 //     }
 // }
+// CAN REMOVE
 fn tower_shooting(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -87,6 +93,7 @@ fn tower_shooting(
         }
     }
 }
+// CAN REMOVE
 fn bullet_despawn(
     mut commands: Commands,
     mut bullets: Query<(Entity, &mut Lifetime)>,
@@ -102,6 +109,7 @@ fn bullet_despawn(
         }
     }
 }
+// Simple camera spawn
 fn spawn_camera(mut commands: Commands) {
     // camera
     commands.spawn(Camera3dBundle {
@@ -109,6 +117,7 @@ fn spawn_camera(mut commands: Commands) {
         ..default()
     });
 }
+// Simple basic scene
 fn spawn_basic_scene(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -156,6 +165,7 @@ fn spawn_basic_scene(
         })
         .insert(Name::new("Moving Target")); //entity name
 }
+// Simple light spawn
 fn spawn_light(mut commands: Commands) {
     // light
     commands
