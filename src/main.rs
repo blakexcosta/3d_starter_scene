@@ -196,5 +196,26 @@ fn main() {
         .add_plugin(FrameTimeDiagnosticsPlugin::default()) // add the plugin for displaying fps
         .add_system(tower_shooting)
         .add_system(bullet_despawn) // despawn bullet
+        .add_system(keyboard_input_system)
         .run();
+}
+
+// input system
+/// This system prints 'A' key state
+fn keyboard_input_system(keyboard_input: Res<Input<KeyCode>>) {
+    if keyboard_input.pressed(KeyCode::W) {
+        info!("'W' currently pressed");
+    }
+
+    if keyboard_input.pressed(KeyCode::A) {
+        info!("'A' currently pressed");
+    }
+
+    if keyboard_input.pressed(KeyCode::S) {
+        info!("'S'  currently pressed");
+    }
+
+    if keyboard_input.pressed(KeyCode::D) {
+        info!("'D'  currently pressed");
+    }
 }
