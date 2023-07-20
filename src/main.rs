@@ -194,9 +194,10 @@ fn main() {
         .add_plugins(DefaultPlugins) // add default bevy plugins
         .add_plugin(WorldInspectorPlugin::new()) // add the plugin for setting up inspector
         .add_plugin(FrameTimeDiagnosticsPlugin::default()) // add the plugin for displaying fps
-        .add_system(tower_shooting)
+        //.add_system(tower_shooting)
         .add_system(bullet_despawn) // despawn bullet
         .add_system(keyboard_input_system)
+        .add_system(spawn_cube_on_click)
         .run();
 }
 
@@ -217,5 +218,34 @@ fn keyboard_input_system(keyboard_input: Res<Input<KeyCode>>) {
 
     if keyboard_input.pressed(KeyCode::D) {
         info!("'D'  currently pressed");
+    }
+}
+
+fn spawn_cube_on_click(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+    mouse_button_input: Res<Input<MouseButton>>,
+) {
+    let mut rng = rand::thread_rng();
+    let random_float: f32 = rng.gen_range(0.0..4.0);
+    let spawn_transform =
+        Transform::from_xyz(0.0, 0.7, random_float).with_rotation(Quat::from_rotation_y(-PI / 2.0));
+
+    // spawn new cube if mouse is pressed
+    if (mouse_button_input.just_pressed(MouseButton::Left)) {
+        commands
+            .spawn(PbrBundle {
+                mesh: meshes.add(Mesh::from(shape::Cube { size: 0.1 })),
+                material: materials.add(Color::rgb(1.0, 0.0, 0.0).into()),
+                transform: spawn_transform,
+                ..default()
+            })
+            .insert(Target {
+                // add a lifetime component to the bullet
+                speed: 4.0,
+                direction: Vec3::Y,
+            })
+            .insert(Name::new("Circle"));
     }
 }
